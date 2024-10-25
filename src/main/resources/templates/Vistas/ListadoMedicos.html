@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Listado de  Medicos</title>
+	<style>
+		html {
+			background-color: #c5dec9;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 align="center"> Listado de Medicos</h1>
+	<h2 align="center">
+		<a th:href="@{RegistrarMedico}" th:text="'Nuevo Registro'" 
+		title="Crear un nuevo registro">
+
+		</a>
+	</h2>
+	<table align="center" border="2">
+		<tr>
+			<th>Codigo</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Email</th>
+			<th>DNI</th>
+			<th>Estado Civil</th>
+			<th>Fecha Nacim</th>
+			<th>Acciones</th>
+		</tr>
+		<th:block th:each="m:${listado}">
+			<tr>
+				<td th:text="${m.imedicocl3}"></td>
+				<td th:text="${m.nombrecl3}"></td>
+				<td th:text="${m.apellidocl3}"></td>
+				<td th:text="${m.email}"></td>
+				<td th:text="${m.dnicl3}"></td>
+				<td th:text="${m.estadocivilcl3}"></td>
+				<td th:text="${#dates.format(m.fechanacimcl3,'dd-MM-yyy')}"></td>
+				<td>
+					<a th:href="@{editarmedico/}+${m.imedicocl3}" th:text="Editar" title="Editar Registro">
+					</a>
+				</td>
+				<td>
+					<a th:href="@{eliminarmedico/}+${m.imedicocl3}" th:text="Eliminar" title="Eliminar Registro">
+					</a>
+				</td>
+			</tr>
+		</th:block>
+	
+	</table>
+</body>
+
+</html>
